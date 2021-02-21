@@ -31,10 +31,10 @@ public class MainForm extends javax.swing.JFrame implements GUIObserver {
     private void inicializarKardex() {
         lstKardex = new ArrayList<>();
         lstKardex.add(new Kardex("204270", new int[]{9, 10, 8}));
-        lstKardex.add(new Kardex("204271", new int[]{10, 8, 9}));
-        lstKardex.add(new Kardex("204272", new int[]{10, 8, 8}));
-        lstKardex.add(new Kardex("204273", new int[]{8, 10, 8}));
-        lstKardex.add(new Kardex("204274", new int[]{7, 10, 7}));
+        lstKardex.add(new Kardex("204820", new int[]{10, 8, 9}));
+        lstKardex.add(new Kardex("204722", new int[]{10, 8, 8}));
+        lstKardex.add(new Kardex("203865", new int[]{8, 10, 8}));
+        lstKardex.add(new Kardex("132986", new int[]{7, 10, 7}));
     }
 
     /**
