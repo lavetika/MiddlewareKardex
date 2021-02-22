@@ -60,6 +60,9 @@ public class MainForm extends javax.swing.JFrame implements GUIObserver {
         lblTituloRecibido.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         lblTituloRecibido.setText("Recibido:");
 
+        txtRecibido.setEditable(false);
+        txtRecibido.setFocusable(false);
+
         btnConectarServer.setText("Conectar a servidor");
         btnConectarServer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -104,16 +107,19 @@ public class MainForm extends javax.swing.JFrame implements GUIObserver {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnConectarServerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConectarServerActionPerformed
-        new Thread(clienteServer).start();    }//GEN-LAST:event_btnConectarServerActionPerformed
+        new Thread(clienteServer).start();
+        this.btnConectarServer.setEnabled(false);
+    }//GEN-LAST:event_btnConectarServerActionPerformed
 
     @Override
     public void update(String contenido) {
+        this.btnConectarServer.setEnabled(true);
         txtRecibido.setText(contenido);
         clienteServer.enviar(buscarKardex(contenido));
     }
 
     private String buscarKardex(String alumno) {
-        Kardex kardex=new Kardex(alumno.split("\\.")[0]);
+        Kardex kardex = new Kardex(alumno.split("\\.")[0]);
         return lstKardex.get(lstKardex.indexOf(kardex)).toString();
     }
 
