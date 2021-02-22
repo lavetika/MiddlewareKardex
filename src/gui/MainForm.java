@@ -24,6 +24,9 @@ public class MainForm extends javax.swing.JFrame implements GUIObserver {
      */
     public MainForm() {
         initComponents();
+        this.setLocationRelativeTo(null);
+        this.setTitle("Sistema Kárdex");
+
         this.clienteServer = new Cliente(this);
         inicializarKardex();
     }
@@ -34,7 +37,7 @@ public class MainForm extends javax.swing.JFrame implements GUIObserver {
         lstKardex.add(new Kardex("204820", new int[]{10, 8, 9}));
         lstKardex.add(new Kardex("204722", new int[]{10, 8, 8}));
         lstKardex.add(new Kardex("203865", new int[]{8, 10, 8}));
-        lstKardex.add(new Kardex("132986", new int[]{7, 10, 7}));
+        lstKardex.add(new Kardex("132986", new int[]{7, 10, 8}));
     }
 
     /**
@@ -50,58 +53,46 @@ public class MainForm extends javax.swing.JFrame implements GUIObserver {
         lblTituloRecibido = new javax.swing.JLabel();
         txtRecibido = new javax.swing.JTextField();
         btnConectarServer = new javax.swing.JButton();
+        lblEncabezado = new javax.swing.JLabel();
+        lblFondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMaximumSize(new java.awt.Dimension(487, 350));
+        setMinimumSize(new java.awt.Dimension(487, 350));
+        setPreferredSize(new java.awt.Dimension(487, 350));
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        lblInstruccion.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        lblInstruccion.setFont(new java.awt.Font("Roboto", 1, 24)); // NOI18N
+        lblInstruccion.setForeground(new java.awt.Color(0, 0, 0));
         lblInstruccion.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblInstruccion.setText("Sistema Kardex");
+        getContentPane().add(lblInstruccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 475, -1));
 
-        lblTituloRecibido.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        lblTituloRecibido.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
         lblTituloRecibido.setText("Recibido:");
+        getContentPane().add(lblTituloRecibido, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 174, -1, 30));
 
         txtRecibido.setEditable(false);
+        txtRecibido.setBackground(new java.awt.Color(255, 255, 255));
         txtRecibido.setFocusable(false);
+        getContentPane().add(txtRecibido, new org.netbeans.lib.awtextra.AbsoluteConstraints(45, 204, 410, 36));
 
+        btnConectarServer.setBackground(new java.awt.Color(255, 204, 0));
+        btnConectarServer.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
+        btnConectarServer.setForeground(new java.awt.Color(0, 0, 0));
         btnConectarServer.setText("Conectar a servidor");
         btnConectarServer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnConectarServerActionPerformed(evt);
             }
         });
+        getContentPane().add(btnConectarServer, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 110, -1, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(lblInstruccion, javax.swing.GroupLayout.DEFAULT_SIZE, 673, Short.MAX_VALUE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(138, 138, 138)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtRecibido, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblTituloRecibido)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(262, 262, 262)
-                        .addComponent(btnConectarServer)))
-                .addContainerGap(139, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lblInstruccion)
-                .addGap(18, 18, 18)
-                .addComponent(btnConectarServer)
-                .addGap(42, 42, 42)
-                .addComponent(lblTituloRecibido)
-                .addGap(18, 18, 18)
-                .addComponent(txtRecibido, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(277, Short.MAX_VALUE))
-        );
+        lblEncabezado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/FED148.jpeg"))); // NOI18N
+        getContentPane().add(lblEncabezado, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 570, 70));
+
+        lblFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/blanco.jpg"))); // NOI18N
+        getContentPane().add(lblFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 510, 440));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -125,6 +116,8 @@ public class MainForm extends javax.swing.JFrame implements GUIObserver {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnConectarServer;
+    private javax.swing.JLabel lblEncabezado;
+    private javax.swing.JLabel lblFondo;
     private javax.swing.JLabel lblInstruccion;
     private javax.swing.JLabel lblTituloRecibido;
     private javax.swing.JTextField txtRecibido;
