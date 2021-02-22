@@ -23,16 +23,21 @@ public class Cliente implements Runnable {
     }
 
     public void escuchar() {
+        System.out.println("El sistema Kardex esta conectado al servidor.");
         try {
             socket = new Socket("127.0.0.1", 9001);
             out = socket.getOutputStream();
             
 
             while (true) {
+                System.out.println("Sistema Kardex esta en la escucha");
+                System.out.println("----");
                 in = socket.getInputStream();
                 byte[] bytes = new byte[esperarDatos(in)];
                 in.read(bytes);
                 String recibido = deserializar(bytes);
+                System.out.println("Enviando: " + recibido);
+            System.out.println("----");
                 notificar(recibido);
             }
 
@@ -43,7 +48,8 @@ public class Cliente implements Runnable {
 
     public void enviar(String contenido) {
         try {
-            System.out.println("Enviando: "+contenido);
+            System.out.println("Enviando: " + contenido);
+            System.out.println("----");
             byte[] bytes = serializar(contenido);
             out.write(bytes);
             out.flush();

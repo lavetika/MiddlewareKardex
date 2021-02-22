@@ -6,6 +6,7 @@
 package gui;
 
 import conexion.Cliente;
+import datos.BaseDeDatosKardex;
 import dominio.Kardex;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +18,7 @@ import java.util.List;
 public class MainForm extends javax.swing.JFrame implements GUIObserver {
 
     private final Cliente clienteServer;
-    private List<Kardex> lstKardex;
+    private BaseDeDatosKardex lstKardex;
 
     /**
      * Creates new form MainForm
@@ -25,16 +26,8 @@ public class MainForm extends javax.swing.JFrame implements GUIObserver {
     public MainForm() {
         initComponents();
         this.clienteServer = new Cliente(this);
-        inicializarKardex();
-    }
-
-    private void inicializarKardex() {
-        lstKardex = new ArrayList<>();
-        lstKardex.add(new Kardex("204270", new int[]{9, 10, 8}));
-        lstKardex.add(new Kardex("204271", new int[]{10, 8, 9}));
-        lstKardex.add(new Kardex("204272", new int[]{10, 8, 8}));
-        lstKardex.add(new Kardex("204273", new int[]{8, 10, 8}));
-        lstKardex.add(new Kardex("204274", new int[]{7, 10, 7}));
+        lstKardex = new BaseDeDatosKardex();
+        lstKardex.inicializarKardex();
     }
 
     /**
@@ -114,7 +107,7 @@ public class MainForm extends javax.swing.JFrame implements GUIObserver {
 
     private String buscarKardex(String alumno) {
         Kardex kardex=new Kardex(alumno.split("\\.")[0]);
-        return lstKardex.get(lstKardex.indexOf(kardex)).toString();
+        return lstKardex.getLstKardex().get(lstKardex.getLstKardex().indexOf(kardex)).toString();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

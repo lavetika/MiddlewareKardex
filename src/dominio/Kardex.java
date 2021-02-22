@@ -1,5 +1,7 @@
 package dominio;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 
 /**
@@ -8,13 +10,13 @@ import java.util.Objects;
  */
 public class Kardex {
     private String idAlumno;
-    private int[] calificaciones;
+    private HashMap<String, Integer> calificaciones;
 
     public Kardex(String idAlumno) {
         this.idAlumno = idAlumno;
     }
     
-    public Kardex(String idAlumno, int[] calificaciones) {
+    public Kardex(String idAlumno, HashMap<String, Integer> calificaciones) {
         this.idAlumno = idAlumno;
         this.calificaciones = calificaciones;
     }
@@ -23,10 +25,12 @@ public class Kardex {
     public String toString() {
         String datos="";
         datos+=idAlumno+".";
-        for (int cal : calificaciones) {
-            datos+=cal+".";
-        }
         
+        for (Map.Entry<String, Integer> entry : calificaciones.entrySet()) {
+            System.out.println("clave=" + entry.getKey() + ", valor=" + entry.getValue());
+            datos+=entry.getKey()+"."+entry.getValue()+".";
+        }
+                
         datos=datos.substring(0,datos.length()-1);
         
         return datos;
