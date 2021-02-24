@@ -6,6 +6,7 @@
 package datos;
 
 import dominio.Kardex;
+import dominio.Materia;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -23,36 +24,42 @@ public class BaseDeDatosKardex {
     }
 
     public void inicializarKardex() {
-        HashMap<String, Integer> materias = new HashMap<>();
+        HashMap<Materia, Integer> materias = new HashMap<>();
         
-        materias.put("Programación", 9);
-        materias.put("Diseño de Software", 10);
-        materias.put("Emprendimiento", 8);
-        lstKardex.add(new Kardex("204270", (HashMap<String, Integer>) materias.clone()));
+        final String ID_BORREGO="1234";
+        final String ID_VALTIERRA="4321";
+        final String ID_CABADA="0000";
+        
+        Materia materia1=new Materia("1", "Sistemas Distribuidos", ID_BORREGO);
+        Materia materia2=new Materia("2", "Matemáticas Computacionales", ID_VALTIERRA);
+        Materia materia3=new Materia("3", "Matemáticas Discretas", ID_VALTIERRA);
+        Materia materia4=new Materia("4", "Sistemas Operativos", ID_CABADA);
+        
+        materias.put(materia1, 9);
+        materias.put(materia2, 10);
+        materias.put(materia4, 8);
+        lstKardex.add(new Kardex("204270", (HashMap<Materia, Integer>) materias.clone()));
 
         materias.clear();
-        materias.put("Programación", 10);
-        materias.put("Diseño de Software", 8);
-        materias.put("Emprendimiento", 9);
-        lstKardex.add(new Kardex("204271", (HashMap<String, Integer>) materias.clone()));
+        materias.put(materia2, 10);
+        materias.put(materia3, 8);
+        materias.put(materia1, 9);
+        lstKardex.add(new Kardex("204271", (HashMap<Materia, Integer>) materias.clone()));
         
         materias.clear();
-        materias.put("Programación", 10);
-        materias.put("Diseño de Software", 8);
-        materias.put("Emprendimiento", 8);
-        lstKardex.add(new Kardex("204272", (HashMap<String, Integer>) materias.clone()));
+        materias.put(materia3, 10);
+        materias.put(materia4, 8);
+        lstKardex.add(new Kardex("204272", (HashMap<Materia, Integer>) materias.clone()));
         
         materias.clear();
-        materias.put("Programación", 8);
-        materias.put("Diseño de Software", 10);
-        materias.put("Emprendimiento", 8);
-        lstKardex.add(new Kardex("204273", (HashMap<String, Integer>) materias.clone()));
+        materias.put(materia1, 8);
+        materias.put(materia4, 10);
+        lstKardex.add(new Kardex("204273", (HashMap<Materia, Integer>) materias.clone()));
         
         materias.clear();
-        materias.put("Programación", 7);
-        materias.put("Diseño de Software", 10);
-        materias.put("Emprendimiento", 7);
-        lstKardex.add(new Kardex("204274", (HashMap<String, Integer>) materias.clone()));
+        materias.put(materia2, 7);
+        materias.put(materia4, 10);
+        lstKardex.add(new Kardex("204274", (HashMap<Materia, Integer>) materias.clone()));
     }
 
 }

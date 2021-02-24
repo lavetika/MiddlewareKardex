@@ -10,13 +10,13 @@ import java.util.Objects;
  */
 public class Kardex {
     private String idAlumno;
-    private HashMap<String, Integer> calificaciones;
+    private HashMap<Materia, Integer> calificaciones;
 
     public Kardex(String idAlumno) {
         this.idAlumno = idAlumno;
     }
     
-    public Kardex(String idAlumno, HashMap<String, Integer> calificaciones) {
+    public Kardex(String idAlumno, HashMap<Materia, Integer> calificaciones) {
         this.idAlumno = idAlumno;
         this.calificaciones = calificaciones;
     }
@@ -26,7 +26,7 @@ public class Kardex {
         String datos="";
         datos+=idAlumno+".";
         
-        for (Map.Entry<String, Integer> entry : calificaciones.entrySet()) {
+        for (Map.Entry<Materia, Integer> entry : calificaciones.entrySet()) {
             System.out.println("clave=" + entry.getKey() + ", valor=" + entry.getValue());
             datos+=entry.getKey()+"."+entry.getValue()+".";
         }
