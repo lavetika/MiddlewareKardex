@@ -56,10 +56,9 @@ public class MainForm extends javax.swing.JFrame implements GUIObserver {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblInstruccion.setFont(new java.awt.Font("Roboto", 1, 24)); // NOI18N
-        lblInstruccion.setForeground(new java.awt.Color(0, 0, 0));
         lblInstruccion.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblInstruccion.setText("Sistema Kardex");
-        getContentPane().add(lblInstruccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 475, -1));
+        getContentPane().add(lblInstruccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 467, -1));
 
         lblTituloRecibido.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
         lblTituloRecibido.setText("Recibido:");
@@ -72,7 +71,6 @@ public class MainForm extends javax.swing.JFrame implements GUIObserver {
 
         btnConectarServer.setBackground(new java.awt.Color(255, 204, 0));
         btnConectarServer.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
-        btnConectarServer.setForeground(new java.awt.Color(0, 0, 0));
         btnConectarServer.setText("Conectar a servidor");
         btnConectarServer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -82,10 +80,10 @@ public class MainForm extends javax.swing.JFrame implements GUIObserver {
         getContentPane().add(btnConectarServer, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 110, -1, -1));
 
         lblEncabezado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/FED148.jpeg"))); // NOI18N
-        getContentPane().add(lblEncabezado, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 570, 70));
+        getContentPane().add(lblEncabezado, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 467, 70));
 
         lblFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/blanco.jpg"))); // NOI18N
-        getContentPane().add(lblFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 510, 440));
+        getContentPane().add(lblFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 467, 440));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
