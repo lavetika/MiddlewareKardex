@@ -50,9 +50,10 @@ public class MainForm extends javax.swing.JFrame implements GUIObserver {
         lblFondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(487, 350));
-        setMinimumSize(new java.awt.Dimension(487, 350));
-        setPreferredSize(new java.awt.Dimension(487, 350));
+        setMaximumSize(new java.awt.Dimension(487, 336));
+        setMinimumSize(new java.awt.Dimension(487, 336));
+        setPreferredSize(new java.awt.Dimension(487, 336));
+        setSize(new java.awt.Dimension(487, 336));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblInstruccion.setFont(new java.awt.Font("Roboto", 1, 24)); // NOI18N
@@ -80,10 +81,10 @@ public class MainForm extends javax.swing.JFrame implements GUIObserver {
         getContentPane().add(btnConectarServer, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 110, -1, -1));
 
         lblEncabezado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/FED148.jpeg"))); // NOI18N
-        getContentPane().add(lblEncabezado, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 467, 70));
+        getContentPane().add(lblEncabezado, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 510, 70));
 
         lblFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/blanco.jpg"))); // NOI18N
-        getContentPane().add(lblFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 467, 440));
+        getContentPane().add(lblFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 510, 440));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
