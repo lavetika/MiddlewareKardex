@@ -1,22 +1,25 @@
 package conexion;
 
 import gui.GUIObserver;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.Socket;
 import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
 
 /**
  *
  * @author Invitado
  */
-public class Cliente implements Runnable {
+public class Cliente implements Runnable, Framer {
 
     private Socket socket;
     private final GUIObserver observer;
     private OutputStream out;
     private InputStream in;
+    private static final byte DELIMITADOR = '~'; //delimitador del mensaje
 
     public Cliente(GUIObserver observer) {
         this.observer = observer;
@@ -27,17 +30,16 @@ public class Cliente implements Runnable {
         try {
             socket = new Socket("127.0.0.1", 9001);
             out = socket.getOutputStream();
-            
 
             while (true) {
                 System.out.println("Sistema Kardex esta en la escucha");
                 System.out.println("----");
                 in = socket.getInputStream();
-                byte[] bytes = new byte[esperarDatos(in)];
-                in.read(bytes);
-                String recibido = deserializar(bytes);
+//                byte[] bytes = new byte[esperarDatos(in)];
+//                in.read(bytes);
+                String recibido = deserializar(nextMsg());
                 System.out.println("Enviando: " + recibido);
-            System.out.println("----");
+                System.out.println("----");
                 notificar(recibido);
             }
 
@@ -51,8 +53,9 @@ public class Cliente implements Runnable {
             System.out.println("Enviando: " + contenido);
             System.out.println("----");
             byte[] bytes = serializar(contenido);
-            out.write(bytes);
-            out.flush();
+            frameMsg(bytes, out);
+//          out.write(bytes);
+//          out.flush();
         } catch (Exception ex) {
             System.out.println("Ocurrió un error: " + ex.getMessage());
         }
@@ -84,5 +87,35 @@ public class Cliente implements Runnable {
     @Override
     public void run() {
         escuchar();
+    }
+
+    @Override
+    public void frameMsg(byte[] mensaje, OutputStream out) throws IOException {
+        for (byte b : mensaje) {
+            if(b==DELIMITADOR){
+                throw new IOException("El mensaje contiene el delimitador.");
+            }
+        }
+        out.write(mensaje);
+        out.write(DELIMITADOR);
+        out.flush();
+    }
+
+    @Override
+    public byte[] nextMsg() throws IOException {
+        ByteArrayOutputStream msgBuffer=new ByteArrayOutputStream();
+        int sigByte;
+        
+        while((sigByte=in.read())!=DELIMITADOR){
+            if(sigByte==-1){
+                if(msgBuffer.size()==0){
+                    return null;
+                }else{
+                    throw new IOException("Mensaje sin delimitador.");
+                }
+            }
+            msgBuffer.write(sigByte);
+        }
+        return msgBuffer.toByteArray();
     }
 }

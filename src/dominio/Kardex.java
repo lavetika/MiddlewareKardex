@@ -27,8 +27,7 @@ public class Kardex {
         datos+=idAlumno+".";
         
         for (Map.Entry<Materia, Integer> entry : calificaciones.entrySet()) {
-            System.out.println("clave=" + entry.getKey() + ", valor=" + entry.getValue());
-            datos+=entry.getKey()+"."+entry.getValue()+".";
+            datos+=entry.getKey()+"."+String.format("%02d",entry.getValue())+".";
         }
                 
         datos=datos.substring(0,datos.length()-1);

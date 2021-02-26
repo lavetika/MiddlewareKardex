@@ -12,21 +12,21 @@ import java.util.Objects;
  * @author Invitado
  */
 public class Materia {
-    private String id;
+    private int id;
     private String nombre;
     private String idMaestro;
 
-    public Materia(String id, String nombre, String idMaestro) {
+    public Materia(int id, String nombre, String idMaestro) {
         this.id = id;
         this.nombre = nombre;
         this.idMaestro = idMaestro;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -77,6 +77,6 @@ public class Materia {
 
     @Override
     public String toString() {
-        return id+"."+nombre+"."+idMaestro;
+        return String.format("%03d", id);
     }
 }
