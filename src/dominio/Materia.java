@@ -16,6 +16,11 @@ public class Materia {
     private String nombre;
     private String idMaestro;
 
+    public Materia(int id, String idMaestro) {
+        this.id = id;
+        this.idMaestro = idMaestro;
+    }
+    
     public Materia(int id, String nombre, String idMaestro) {
         this.id = id;
         this.nombre = nombre;

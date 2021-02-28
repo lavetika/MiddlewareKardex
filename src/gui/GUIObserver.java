@@ -5,5 +5,6 @@ package gui;
  * @author Invitado
  */
 public interface GUIObserver {
-    public void update(String contenido);
+    public void updateAlumno(String contenido);
+    public void updateMaestro(String contenido);
 }

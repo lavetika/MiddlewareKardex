@@ -8,8 +8,6 @@ package gui;
 import conexion.Cliente;
 import datos.BaseDeDatosKardex;
 import dominio.Kardex;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  *
@@ -93,16 +91,12 @@ public class MainForm extends javax.swing.JFrame implements GUIObserver {
         this.btnConectarServer.setEnabled(false);
     }//GEN-LAST:event_btnConectarServerActionPerformed
 
-    @Override
-    public void update(String contenido) {
-        this.btnConectarServer.setEnabled(true);
-        txtRecibido.setText(contenido);
-        clienteServer.enviar(buscarKardex(contenido));
-    }
-
     private String buscarKardex(String alumno) {
-        Kardex kardex=new Kardex(alumno.split("\\.")[0]);
-        return lstKardex.getLstKardex().get(lstKardex.getLstKardex().indexOf(kardex)).toString();
+        Kardex kardex = new Kardex(alumno.split("\\.")[1]);
+        if (lstKardex.getLstKardex().contains(kardex)) {
+            return lstKardex.getLstKardex().get(lstKardex.getLstKardex().indexOf(kardex)).toString();
+        }
+        return "NO.SE.HA.ENCONTRADO.NADA!";
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -113,4 +107,23 @@ public class MainForm extends javax.swing.JFrame implements GUIObserver {
     private javax.swing.JLabel lblTituloRecibido;
     private javax.swing.JTextField txtRecibido;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void updateAlumno(String contenido) {
+        txtRecibido.setText(contenido);
+        clienteServer.enviar(buscarKardex(contenido));
+    }
+
+    @Override
+    public void updateMaestro(String contenido) {
+        txtRecibido.setText(contenido);
+        String[] array = contenido.split("\\.");
+
+        String idMaestro = array[1];
+        int idMateria = Integer.parseInt(array[2]);
+        String idAlumno = array[3];
+        int calificacion = Integer.parseInt(array[4]);
+
+        lstKardex.actualizarCalificacion(idMaestro, idAlumno, idMateria, calificacion);
+    }
 }

@@ -4,7 +4,6 @@ import dominio.Kardex;
 import dominio.Materia;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 /**
  *
@@ -55,4 +54,27 @@ public class BaseDeDatosKardex {
         lstKardex.add(new Kardex("00000204274", (HashMap<Materia, Integer>) materias.clone()));
     }
 
+    
+    /**
+     * Actualizar la calificación de la materia de un alumno en la base de datos.
+     * @param idMaestro ID del maestro que imparte la materia.
+     * @param idAlumno ID del alumno al que se desea actualizar la calificación.
+     * @param idMateria ID de la materia en la que se desea actualizar calificación.
+     * @param calificacion Nueva calificación para el alumno.
+     */
+    public void actualizarCalificacion(String idMaestro, String idAlumno, int idMateria, int calificacion){
+        
+        for (Kardex kardex : lstKardex) {
+            if(kardex.getIdAlumno().equals(idAlumno)){
+                Kardex k=kardex;
+                HashMap<Materia, Integer> cals=k.getCalificaciones();
+
+                Materia materia=new Materia(idMateria, idMaestro);
+                
+                cals.put(materia, calificacion);
+                
+                break;
+            }
+        }
+    }
 }

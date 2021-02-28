@@ -38,9 +38,16 @@ public class Cliente implements Runnable, Framer {
 //                byte[] bytes = new byte[esperarDatos(in)];
 //                in.read(bytes);
                 String recibido = deserializar(nextMsg());
-                System.out.println("Enviando: " + recibido);
+                System.out.println("Recibido: " + recibido);
                 System.out.println("----");
-                notificar(recibido);
+                String cadena = recibido.split("\\.")[0];
+
+                
+                if (cadena.equalsIgnoreCase("alumno")) {
+                    notificarAlumno(recibido);
+                } else if (cadena.equalsIgnoreCase("maestro")) {
+                    notificarMaestro(recibido);
+                }
             }
 
         } catch (Exception ex) {
@@ -80,8 +87,8 @@ public class Cliente implements Runnable, Framer {
         return new String(datos, StandardCharsets.UTF_8);
     }
 
-    private void notificar(String contenido) {
-        observer.update(contenido);
+    private void notificarAlumno(String contenido) {
+        observer.updateAlumno(contenido);
     }
 
     @Override
@@ -92,7 +99,7 @@ public class Cliente implements Runnable, Framer {
     @Override
     public void frameMsg(byte[] mensaje, OutputStream out) throws IOException {
         for (byte b : mensaje) {
-            if(b==DELIMITADOR){
+            if (b == DELIMITADOR) {
                 throw new IOException("El mensaje contiene el delimitador.");
             }
         }
@@ -103,19 +110,23 @@ public class Cliente implements Runnable, Framer {
 
     @Override
     public byte[] nextMsg() throws IOException {
-        ByteArrayOutputStream msgBuffer=new ByteArrayOutputStream();
+        ByteArrayOutputStream msgBuffer = new ByteArrayOutputStream();
         int sigByte;
-        
-        while((sigByte=in.read())!=DELIMITADOR){
-            if(sigByte==-1){
-                if(msgBuffer.size()==0){
+
+        while ((sigByte = in.read()) != DELIMITADOR) {
+            if (sigByte == -1) {
+                if (msgBuffer.size() == 0) {
                     return null;
-                }else{
+                } else {
                     throw new IOException("Mensaje sin delimitador.");
                 }
             }
             msgBuffer.write(sigByte);
         }
         return msgBuffer.toByteArray();
+    }
+
+    private void notificarMaestro(String recibido) {
+        observer.updateMaestro(recibido);
     }
 }

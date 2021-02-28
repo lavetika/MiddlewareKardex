@@ -21,6 +21,24 @@ public class Kardex {
         this.calificaciones = calificaciones;
     }
 
+    public String getIdAlumno() {
+        return idAlumno;
+    }
+
+    public void setIdAlumno(String idAlumno) {
+        this.idAlumno = idAlumno;
+    }
+
+    public HashMap<Materia, Integer> getCalificaciones() {
+        return calificaciones;
+    }
+
+    public void setCalificaciones(HashMap<Materia, Integer> calificaciones) {
+        this.calificaciones = calificaciones;
+    }
+    
+    
+
     @Override
     public String toString() {
         String datos="";
