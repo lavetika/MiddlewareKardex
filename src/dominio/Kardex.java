@@ -42,7 +42,7 @@ public class Kardex {
     @Override
     public String toString() {
         String datos="";
-        datos+=idAlumno+".";
+       // datos+=idAlumno+".";
         
         for (Map.Entry<Materia, Integer> entry : calificaciones.entrySet()) {
             datos+=entry.getKey()+"."+String.format("%02d",entry.getValue())+".";
